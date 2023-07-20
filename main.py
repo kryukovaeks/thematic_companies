@@ -50,7 +50,7 @@ if api_key and theme:
     st.session_state.selected_columns = selected_columns
 
     if selected_columns:
-        df_selected = df[selected_columns]
+        df_selected = df_temp_2[selected_columns]
         html_table = df_selected.to_html(escape=False, index=False)
 
         # Wrap the HTML table in a div with fixed height and overflow
