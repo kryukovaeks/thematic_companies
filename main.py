@@ -39,7 +39,8 @@ if api_key and theme:
 
     df_temp = pd.DataFrame({'summary': contents, 'Score': scores})
     df_temp_2 = df_temp.merge(equities_united_states, on=['summary'], how='left')
-    
+    # Expand the maximum width of each cell to display more content
+    pd.set_option('display.max_colwidth', None)   
     # Display the table
     st.write(df_temp_2)
 
