@@ -42,7 +42,16 @@ if api_key and theme:
     # Expand the maximum width of each cell to display more content
     pd.set_option('display.max_colwidth', None)   
     # Display the table
-    st.write(df_temp_2)
+    html_table = df_temp_2.to_html(escape=False, index=False)
+
+    # Wrap the HTML table in a div with fixed height and overflow
+    html_table_with_scroll = f"""
+    <div style="height:300px;overflow:auto;">
+        {html_table}
+    </div>
+    """
+    st.write(html_table_with_scroll, unsafe_allow_html=True)
+    #st.write(df_temp_2)
 
     # Add a table filter functionality
     st.write("Filtered Table:")
