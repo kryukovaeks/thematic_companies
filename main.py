@@ -41,21 +41,24 @@ if api_key and theme:
     df_temp_2 = df_temp.merge(equities_united_states, on=['summary'], how='left')
     # Expand the maximum width of each cell to display more content
     pd.set_option('display.max_colwidth', None)   
-    # Display the table
-    html_table = df_temp_2.to_html(escape=False, index=False)
+    # Check if the selected columns are in the session state. If not, initialize it.
+    if 'selected_columns' not in st.session_state:
+        st.session_state.selected_columns = ['summary', 'Score', 'name', 'industry']
 
-    # Wrap the HTML table in a div with fixed height and overflow
-    html_table_with_scroll = f"""
-    <div style="height:300px;overflow:auto;">
-        {html_table}
-    </div>
-    """
-    st.write(html_table_with_scroll, unsafe_allow_html=True)
-    #st.write(df_temp_2)
+    # Update the multiselect widget to use session state.
+    selected_columns = st.multiselect("Select columns", df_temp_2.columns, default=st.session_state.selected_columns)
+    st.session_state.selected_columns = selected_columns
 
-    # Add a table filter functionality
-    st.write("Filtered Table:")
-    filtered_column = st.selectbox("Choose a column to filter:", df_temp_2.columns)
-    filter_value = st.text_input(f"Filter by {filtered_column}:")
-    if filter_value:
-        st.write(df_temp_2[df_temp_2[filtered_column].str.contains(filter_value)])
+    if selected_columns:
+        df_selected = df[selected_columns]
+        html_table = df_selected.to_html(escape=False, index=False)
+
+        # Wrap the HTML table in a div with fixed height and overflow
+        html_table_with_scroll = f"""
+        <div style="height:300px;overflow:auto;">
+            {html_table}
+        </div>
+        """
+
+        # Use Streamlit's markdown renderer to display the wrapped table
+        st.markdown(html_table_with_scroll, unsafe_allow_html=True)
