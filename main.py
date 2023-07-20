@@ -41,23 +41,15 @@ if api_key and theme:
     df_temp_2 = df_temp.merge(equities_united_states, on=['summary'], how='left')
     # Expand the maximum width of each cell to display more content
     pd.set_option('display.max_colwidth', None)   
+    # Display the table
+    html_table = df_temp_2.to_html(escape=False, index=False)
 
     # Wrap the HTML table in a div with fixed height and overflow
-    html_table = df_temp_2.to_html(escape=False, index=False, classes='customTable')
-
-    # Wrap the HTML table in a div with fixed height, overflow, and additional CSS for the summary column
     html_table_with_scroll = f"""
-    <style>
-        .customTable td:nth-child(1):not(:nth-last-child(-n+7)) {{  /* Assuming summary is the first column */
-            width: 500px;  /* Adjust width as necessary */
-            white-space: normal;
-        }}
-    </style>
     <div style="height:300px;overflow:auto;">
         {html_table}
     </div>
     """
-
     st.write(html_table_with_scroll, unsafe_allow_html=True)
     #st.write(df_temp_2)
 
