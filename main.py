@@ -5,7 +5,7 @@ import os
 from langchain.vectorstores import FAISS
 from langchain.embeddings.openai import OpenAIEmbeddings
 import pandas as pd
-
+st.set_page_config(layout='wide') 
 st.title("Company Similarity Search")
 
 # User Input
