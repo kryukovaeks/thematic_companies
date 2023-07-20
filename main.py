@@ -7,7 +7,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 import pandas as pd
 st.set_page_config(layout='wide') 
 st.title("Company Similarity Search")
-
+st.write('Example is only for US')
 # User Input
 api_key = st.text_input("OpenAI API Key:", type="password")
 theme = st.text_input("Theme:")
