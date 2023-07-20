@@ -43,9 +43,9 @@ if api_key and theme:
     # Display the table
     st.write(df_temp_2)
 
-# Add a table filter functionality
-st.write("Filtered Table:")
-filtered_column = st.selectbox("Choose a column to filter:", df_temp_2.columns)
-filter_value = st.text_input(f"Filter by {filtered_column}:")
-if filter_value:
-    st.write(df_temp_2[df_temp_2[filtered_column].str.contains(filter_value)])
+    # Add a table filter functionality
+    st.write("Filtered Table:")
+    filtered_column = st.selectbox("Choose a column to filter:", df_temp_2.columns)
+    filter_value = st.text_input(f"Filter by {filtered_column}:")
+    if filter_value:
+        st.write(df_temp_2[df_temp_2[filtered_column].str.contains(filter_value)])
