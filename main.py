@@ -46,9 +46,9 @@ if api_key and theme:
     # Wrap the HTML table in a div with fixed height, overflow, and additional CSS for the summary column
     html_table_with_scroll = f"""
     <style>
-        .customTable td:nth-child(1) {{  /* Assuming summary is the first column. If not, adjust the nth-child value */
-            width: 500px;  /* Adjust width as necessary */
-            white-space: normal;  /* Wrap text if it's longer than the width */
+        .customTable td:nth-child(1) {{  
+            width: 500px; 
+            white-space: normal;  
         }}
     </style>
     <div style="height:300px;overflow:auto;">
