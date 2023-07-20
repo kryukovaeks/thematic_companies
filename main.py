@@ -50,7 +50,7 @@ if api_key and theme:
             width: 500px; 
             white-space: normal;  
         }}
-    </style>
+    </style> \
     <div style="height:300px;overflow:auto;">
         {html_table}
     </div>
